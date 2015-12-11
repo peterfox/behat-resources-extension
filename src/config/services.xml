@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="paths.resources.resource">Resources</parameter>
+        <parameter key="paths.resources.base"></parameter>
+        <parameter key="resource.map" type="collection"></parameter>
+    </parameters>
+
+    <services>
+        <service id="resource.loader" class="BehatResources\ResourceLoader\YamlResourceLoader">
+            <argument>%paths.resources.base%</argument>
+            <argument>%paths.resources.resource%</argument>
+        </service>
+
+        <service id="resource.class_resolver" class="BehatResources\ResourceClassResolver\SimpleResourceClassResolver">
+            <argument>%resource.map%</argument>
+        </service>
+
+        <service id="resource.builder" class="BehatResources\ResourceBuilder">
+            <argument type="service" id="resource.loader" />
+            <argument type="service" id="resource.class_resolver" />
+        </service>
+
+        <service id="resource.context.resource_initializer" class="BehatResources\Context\ResourceInitializer">
+            <argument type="service" id="resource.builder" />
+            <tag name="context.initializer" />
+        </service>
+    </services>
+</container>

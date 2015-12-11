@@ -1,0 +1,21 @@
+{
+    "name": "peterfox/behat-resources-extension",
+    "description": "A Behat extension for using configs as loadable resources",
+    "keywords": ["behat", "resources", "bdd"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Fox",
+            "email": "peter.fox@peterfox.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BehatResources\\": "src"
+        }
+    },
+    "require": {
+        "behat/behat": "~3.0"
+    }
+}
