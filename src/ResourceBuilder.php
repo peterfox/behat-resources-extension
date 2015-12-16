@@ -33,6 +33,14 @@ class ResourceBuilder
     }
 
     /**
+     * @return ResourceClassResolver
+     */
+    public function getClassResolver()
+    {
+        return $this->resolver;
+    }
+
+    /**
      * @param ResourceFactory $factory
      */
     public function setFactory($factory)
